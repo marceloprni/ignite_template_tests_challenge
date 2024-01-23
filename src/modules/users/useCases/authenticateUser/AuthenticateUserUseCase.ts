@@ -8,7 +8,6 @@ import authConfig from '../../../../config/auth';
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { IAuthenticateUserResponseDTO } from "./IAuthenticateUserResponseDTO";
 import { IncorrectEmailOrPasswordError } from "./IncorrectEmailOrPasswordError";
-import { IStatementsRepository } from "@modules/statements/repositories/IStatementsRepository";
 
 interface IRequest {
   email: string;
@@ -19,11 +18,8 @@ interface IRequest {
 export class AuthenticateUserUseCase {
 
   constructor(
-    @inject("UsersRepository")
-    private usersRepository: IUsersRepository,
-
-    @inject("StatementsRepository")
-    private statementsRepository: IStatementsRepository
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository
   ) {}
 
   async execute({ email, password }: IRequest): Promise<IAuthenticateUserResponseDTO> {
